@@ -1,0 +1,96 @@
+@charset 'utf-8';
+@use "../setting" as *;
+
+/*--------------------------------------------------------------------
+  @CONTACT
+----------------------------------------------------------------------*/
+.contact{
+  padding-bottom: 5em;
+  @include mq(lg){
+    width: max(63.6%,700px);
+    margin: 0 auto;
+  }
+  @include mq(xl){
+    width: max(63.6%,700px);
+  }
+}
+.formUnit{
+  margin-top: 3.4em;
+  &_theme{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 5px;
+    padding-right: 3em;
+  }
+  &_ico{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: #333;
+    padding: .2em .518em;
+    font-size: .8em;
+    color: #fff;
+    line-height: 1;
+  }
+  &_detail{
+    margin-bottom: 2em;
+  }
+}
+
+.formList{
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  @include mq(md){
+    flex-direction: row;
+    &_item{
+      margin: 0 40px 0 10px;
+    }
+  }
+}
+
+.consentBlock{
+  &_ttl{
+    @include defaultFont;
+  }
+  &_agree{
+    font-size: min(3.6vw,1.4rem);
+    text-align: center;
+    letter-spacing: -.01em;
+  }
+  &_btn{
+    margin-top: min(16.6vw,62px);
+    text-align: center;
+  }
+  @include mq(md){
+    &_agree{
+      font-size: min(4.6vw,1.6rem);
+    }
+  }
+  @include mq(xl){
+    &_agree{
+      font-size: max(1.1vw,1.6rem);
+    }
+  }
+}
+
+.privacyFrame{
+  overflow: auto;
+  overflow-x: hidden;
+  height: min(60.3vw,226px);
+  margin: 10px 0 2.5em;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  text-align: left;
+  &_theme{
+    font-weight: bold;
+  }
+}
+
+.privacyList{
+  &_theme{
+    margin-top: 1.5em;
+  }
+}

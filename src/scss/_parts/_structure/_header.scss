@@ -1,0 +1,176 @@
+@charset "utf-8";
+@use "../../setting" as *;
+/*--------------------------------------------------------------------
+  @header : ヘッダー
+----------------------------------------------------------------------*/
+.st-{
+  &header{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 3;
+    padding: vw(19.8,375) vw(15,375) 0;
+    $this: &;
+    @include mq(md){
+      padding: vw(33.8,768) vw(30,768) 0;
+    }
+    @include mq(lg){
+      padding: vw(30,1440) vw(58,1440) 0;
+    }
+    &_logo{
+      width: vw(189);
+      @include mq(md){
+        width: vw(189,768);
+      }
+      @include mq(lg){
+        width: vw(260,1440);
+      }
+    }
+    &_board{
+      position: fixed;
+      top: 0;
+      right: 0;
+      transform: translateX(100%);
+      z-index: 3;
+      width: vw(270);
+      height: 100vh;
+      min-height: 100%;
+      padding-top: calc(180vh / 9);
+      margin-left: auto;
+      background-color: rgba(34,34,34, .95);
+      text-align: center;
+      transition: transform .2s .1s ease;
+      @include mq(md){
+        width: vw(330,768);
+      }
+      @include mq(lg){
+        width: vw(520,1440);
+      }
+      .is-active & {
+        transform: translateX(0);
+      }
+    }
+    &_trigger{
+      position: relative;
+      z-index: 4;
+      width: 62px;
+      height: 14px;
+      margin-top: 2px;
+      padding-left: 30px;
+      color: #fff;
+      font-size: 1rem;
+      font-family: $fontEn;
+      font-weight: 800;
+      line-height: 1;
+      &::before,
+      span::after,
+      span::before{
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 22px;
+        height: 2px;
+        background: #fff;
+        content: "";
+        transition: all .2s;
+        pointer-events: none;
+      }
+      &::before{
+        top: 0;
+      }
+      span{
+        pointer-events: none;
+        &::before{
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &::after{
+          bottom: 0;
+        }
+      }
+      .is-active &{
+        &::before{
+          width: 2px;
+          left: 11px;
+          @include mq(xl){
+            left: vw(11,1440);
+            width: vw(2,1440);
+          }
+        }
+        span{
+          &::before,
+          &::after{
+            left: 11px;
+            width: 2px;
+            @include mq(xl){
+              left: vw(11,1440);
+              width: vw(2,1440);
+            }
+          }
+        }
+      }
+      @include mq(lg){
+        margin-top: 5px;
+      }
+      @include mq(xl){
+        width: vw(62,1440);
+        height: vw(14,1440);
+        margin-top: vw(5,1440);
+        padding-left: vw(30,1440);
+        font-size: vw(10,1440);
+        &::before,
+        span::after,
+        span::before{
+          width: vw(22,1440);
+          height: vw(2,1440);
+        }
+      }
+    }
+    &::before{
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 0;
+      height: 100vw;
+      min-height: 100%;
+      background-color: rgba(34,34,34,.6);
+      transition: .5s ease;
+      content: "";
+    }
+    &.is-active {
+      &::before{
+        width: 100%;
+        opacity: 1;
+      }
+    }
+  }
+  &headGnav{
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    &_item{
+      margin: 15px 0;
+      color: inherit;
+      font-family: $fontEn;
+      font-size: 2rem;
+      font-weight: 800;
+      [href="#"]{
+        text-decoration: line-through;
+      }
+      &:first-of-type{
+        width: 45px;
+        margin: 0 auto;
+      }
+      @include mq(xl){
+        margin: max(1vw,15px) 0;
+        font-size: max(1.4vw,2rem);
+        &:first-of-type{
+          width: max(3.1vw,45px);
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,123 @@
+@charset "utf-8";
+@use "../../setting" as *;
+/*--------------------------------------------------------------------
+   Component : フォームアイテム
+----------------------------------------------------------------------*/
+.c-{
+  &input,
+  &select{
+    width: 100%;
+    border: 1px solid #333;
+    background: #fff;
+  }
+  &input:not(textarea){
+    height: 48px;
+  }
+  &input{
+    padding: 10px;
+    &::-webkit-input-placeholder{
+      color: rgba(153,153,153,1);
+    }
+    &:-ms-input-placeholder{
+      color: rgba(153,153,153,1);
+    }
+    &::-moz-placeholder{
+      color: rgba(153,153,153,1);
+    }
+  }
+  &inputRadio{
+    cursor: pointer;
+    $this: &;
+    &_input{
+      display: none;
+    }
+    &_parts{
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+      &::before,
+      &::after{
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        content: '';
+      }
+      &::after{
+        width: 20px;
+        height: 20px;
+        border: 1px solid #333;
+      }
+      &::before{
+        opacity: 0;
+        width: 12px;
+        height: 12px;
+        margin: 0 15px 0 4px;
+        background: #333;
+      }
+      #{$this}_input:checked + &{
+        &::before{
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &inputCheck{
+    $this: &;
+    &_input{
+      display: none;
+    }
+    &_parts{
+      display: inline-block;
+      position: relative;
+      padding-left: 1.9em;
+      &::before,
+      &::after{
+        display: inline-block;
+        position: absolute;
+        transform: translateY(-50%);
+        content: '';
+      }
+      &::before{
+        top: 50%;
+        left: 0;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #333;
+        @include mq(md){
+          width: 20px;
+          height: 20px;
+        }
+        @include mq(xl){
+          width: max(1.3vw,20px);
+          height: max(1.3vw,20px);
+        }
+      }
+      &::after{
+        top: 21%;
+        left: 1.5%;
+        opacity: 0;
+        width: 7px;
+        height: 10px;
+        border-style: solid;
+        border-width: 0 2px 2px 0;
+        transform: rotate(40deg);
+        @include mq(md){
+          width: 9px;
+          height: 12px;
+        }
+        @include mq(xl){
+          width: max(.56vw,9px);
+          height: max(.85vw,12px);
+        }
+      }
+      #{$this}_input:checked + &{
+        &::after{
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

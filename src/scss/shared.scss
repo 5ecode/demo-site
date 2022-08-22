@@ -1,0 +1,28 @@
+@charset 'utf-8';
+/*--------------------------------------------------------------------
+  @サイト内共通
+----------------------------------------------------------------------*/
+@use "default";
+
+/* Layout
+--------------------------------------------------*/
+@use "layout";
+
+/* Parts
+--------------------------------------------------*/
+/* component */
+@use "_parts/_component";
+
+/* module */
+@use "_parts/_module";
+
+/* structure */
+@use "_parts/_structure";
+
+/* Utility
+--------------------------------------------------*/
+@use "utility";
+
+/* webフォント
+--------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&family=Noto+Sans+JP&display=swap');

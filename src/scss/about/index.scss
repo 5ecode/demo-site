@@ -1,0 +1,163 @@
+@charset 'utf-8';
+@use "../setting" as *;
+
+/*--------------------------------------------------------------------
+  @ABOUT US
+----------------------------------------------------------------------*/
+.vision{
+  @include mq(md){
+    width: min(70%,470px);
+    margin: 0 auto;
+  }
+  @include mq(lg){
+    width: min(59.1%,650px);
+  }
+  @include mq(xl){
+    width: max(59%,650px);
+  }
+}
+
+.contentCatch{
+  margin-top: 29px;
+  margin-bottom: 22px;
+  font-size: min(6.4vw,2.4rem);
+  font-weight: normal;
+  @include mq(xl){
+    font-size: max(1.7vw,2.4rem);
+  }
+}
+
+.paragraph{
+  margin-top: 2em;
+  font-size: min(3.6vw,1.4rem);
+  @include defaultFont(md);
+  @include defaultFont(lg);
+  @include defaultFont(xl);
+}
+
+.message{
+  position: relative;
+  margin-top: vw(210);
+  padding: vw(125) min(8vw,30px) vw(40);
+  &::before{
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: vw(-129);
+    left: min(-4vw,15px);
+    transform: translateX(-10%);
+    width: percent(340);
+    padding-top: percent(230);
+    background: url(/assets/images/about/message_img.jpg) no-repeat 0 0;
+    background-size: 100% auto;
+    transition: all 1s .4s cubic-bezier(0.33, 1, 0.68, 1);
+    content: "";
+  }
+  &.is-show{
+    &::before{
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @include mq(md){
+    width: min(69.8%,494px);
+    margin: min(27.4vw,210px) 0 0 auto;
+    padding: min(14.2vw,109px) min(5.3vw,40px) min(5.3vw,40px);
+    &::before{
+      top: vw(-130,768);
+      left: percent(-214,494);
+      width: percent(320,494);
+      padding-top: percent(216,494);
+    }
+  }
+  @include mq(lg){
+    display: flex;
+    justify-content: center;
+    width: min(70%,770px);
+    margin-top: min(19.3vw,277px);
+    padding: min(8.4vw,120px) 0;
+    &_inner{
+      width: percent(400,770);
+    }
+    &::before{
+      top: vw(-144,1440);
+      left: percent(-330,770);
+      width: min(54.55%,420px);
+      padding-top: min(37%,282.45px);
+    }
+  }
+  @include mq(xl){
+    width: max(70%,770px);
+    margin-top: max(19.2vw,277px);
+    padding: max(8.3vw,120px) 0;
+    &::before{
+      width: max(54.5%,420px);
+      padding-top: max(36.69%,282.45px);
+    }
+  }
+}
+
+.company{
+  padding: vw(80) 0;
+  &_inner{
+    padding: 30px 0 40px;
+    &::before{
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #ddd;
+      content: "";
+    }
+  }
+  &_map{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: percent(470,345);
+    iframe{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  @include mq(md){
+    padding: min(10.5vw,80px) 0;
+    &_map{
+      padding-top: percent(230,708);
+    }
+  }
+  @include mq(xl){
+    padding: max(5.5vw,80px) 0;
+    &_inner{
+      padding: max(2vw,30px) 0 max(2.7vw,40px);
+    }
+  }
+}
+
+.companyList{
+  font-size: min(3.6vw,1.4rem);
+  &_theme{
+    flex-basis: 40%;
+  }
+  &_detail{
+    flex-basis: 60%;
+  }
+  @include mq(md){
+    width: min(95.8%,678px);
+    margin-left: auto;
+    &_theme{
+      flex-basis: 20%;
+    }
+    &_detail{
+      flex-basis: 80%;
+    }
+  }
+  @include mq(lg){
+    width: percent(800,1100);
+  }
+  @include mq(xl){
+    font-size: max(1.1vw,1.6rem);
+  }
+}

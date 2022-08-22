@@ -1,0 +1,55 @@
+@charset "utf-8";
+@use "../../setting" as *;
+/*--------------------------------------------------------------------
+   Module : 記事一覧
+----------------------------------------------------------------------*/
+.m-{
+  &articleUnit{
+    display: block;
+    position: relative;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #ddd;
+    &::after{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #333;
+      transition: .3s ease;
+      content: "";
+    }
+    @include hover{
+      &::after{
+        width: 100%;
+      }
+    }
+    &_date{
+      margin-bottom: 2px;
+      font-size: 1rem;
+      font-family: $fontEn;
+      font-weight: bold;
+      color: #cecece;
+    }
+    &_txt{
+      overflow: hidden;
+      font-size: 1.2rem;
+      font-weight: bold;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    @include mq(md){
+      &_txt{
+        font-size: 1.4rem;
+      }
+    }
+    @include mq(xl){
+      &_date{
+        font-size: max(.7vw,1rem);
+      }
+      &_txt{
+        font-size: max(1vw, 1.4rem);
+      }
+    }
+  }
+}

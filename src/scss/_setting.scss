@@ -1,0 +1,145 @@
+@charset 'utf-8';
+/* --------------------------------------------------------------------
+  @変数
+---------------------------------------------------------------------- */
+/* Media Queries */
+$breakpoints: (
+  sm: 'screen and (max-width: 428px)',
+  md: 'screen and (min-width: 600px)',
+  lg: 'screen and (min-width: 769px)',
+  xl: 'screen and (min-width: 1440px)'
+);
+
+$fontEn: 'Montserrat', sans-serif;
+
+
+/* --------------------------------------------------------------------
+  @function
+---------------------------------------------------------------------- */
+/* レスポンシブvw値 */
+@function vw($size, $viewport: 375) {
+  $rate: calc($viewport / $size);
+  @return calc(100vw / $rate);
+}
+
+/* --------------------------------------------------------------------
+  @mixin
+---------------------------------------------------------------------- */
+/* メディアクエリ 例：@include mq(lg){};*/
+@mixin mq($bp) {
+  @media #{map-get($breakpoints, $bp)} {
+   @content;
+  }
+}
+
+/* レスポンシブ%値 */
+@function percent($size, $viewport: 375) {
+  $rate: calc($size / $viewport);
+  @return $rate * 100%;
+}
+
+// デフォルトfontサイズ
+@mixin defaultFont($size: null) {
+  @if $size == md{
+    @include mq(md){
+      font-size: 1.6rem;
+    }
+  }
+  @else if $size == lg{
+    @include mq(lg){
+      font-size: clamp(1.4rem,1.5vw,1.6rem);
+    }
+  }
+  @else if $size == xl{
+    @include mq(xl){
+      font-size: max(1.1vw,1.6rem);
+    }
+  }
+  @else{
+    font-size: min(4.6vw,1.6rem);
+    @include mq(md){
+      font-size: 1.6rem;
+    }
+    @include mq(lg){
+      font-size: clamp(1.4rem,1.5vw,1.6rem);
+    }
+    @include mq(xl){
+      font-size: max(1.1vw,1.6rem);
+    }
+  }
+}
+
+/* マウスオーバー */
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+/* hover opacity */
+@mixin alpha($param:.5){
+  transition: opacity .3s ease;
+  @include hover{
+    opacity: $param;
+  }
+}
+
+/* 格子レイアウト 例：@include flexGrid(5px);*/
+@mixin flexGrid($margin) {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$margin;
+  > *{
+    flex-grow: 1;
+    width: 100%;
+    margin: $margin;
+  }
+}
+
+/* 格子レイアウトflexItem 例：@include flexItemCell(4, 10px);*/
+@mixin flexItemCell($cell:null,$margin:null) {
+  @if $cell == 1{
+    max-width: calc(8.333333% - #{$margin});
+  }
+  @if $cell == 2{
+    max-width: calc(16.666667% - #{$margin});
+  }
+  @if $cell == 3{
+    max-width: calc(25% - #{$margin});
+  }
+  @if $cell == 4{
+    max-width: calc(33.333333% - #{$margin});
+  }
+  @if $cell == 5{
+    max-width: calc(41.666667% - #{$margin});
+  }
+  @if $cell == 6{
+    max-width: calc(50% - #{$margin});
+  }
+  @if $cell == 8{
+    max-width: calc(66.666667% - #{$margin});
+  }
+  @if $cell == 9{
+    max-width: calc(75% - #{$margin});
+  }
+  @if $cell == 10{
+    max-width: calc(83.333333% - #{$margin});
+  }
+  @if $cell == 11{
+    max-width: calc(91.666667% - #{$margin});
+  }
+}
+
+/* キーフレーム 例：@include keyframes(menu-bar01);*/
+@mixin keyframes($animation-name: animaton){
+  @keyframes #{$animation-name}{
+    @content;
+  }
+}
+
+/* アニメーション 例：@include animation(menu-bar01 .75s forwards);*/
+@mixin animation($animation-name){
+  animation: $animation-name;
+}

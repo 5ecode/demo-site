@@ -1,0 +1,22 @@
+@charset "utf-8";
+@use "../../setting" as *;
+/*--------------------------------------------------------------------
+   Module : theme付きリスト
+----------------------------------------------------------------------*/
+.m-{
+   &themeList{
+    display: flex;
+    flex-wrap: wrap;
+    >*{
+      padding: 1.1em 0;
+      border-bottom: 1px solid #ddd;
+    }
+    &_theme{
+      flex-basis: 30%;
+      font-weight: bold;
+    }
+    &_detail{
+      flex-basis: 70%;
+    }
+  }
+}
