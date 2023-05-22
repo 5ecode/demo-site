@@ -12,7 +12,7 @@
     "watch/css": "watch \"npm run css\" ./src/scss",
     "watch/js": "watch \"npm run js\" ./src/js",
     "watch/images": "onchange \"src/images\" -e \"**/*.DS_Store\" -- npm run images",
-    "watch": "npm-run-all -p watch/*"
+    "start": "npm-run-all -p watch/*"
   },
   "author": "",
   "license": "ISC",
