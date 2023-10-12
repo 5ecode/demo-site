@@ -5,8 +5,10 @@
 ----------------------------------------------------------------------*/
 .m-{
    &btnHolder{
+    display: inline-flex;
+    gap: 20px;
     &_item{
-      width: 160px;
+      min-width: 160px;
       @include mq(xl){
         width: max(11.1vw,160px);
       }

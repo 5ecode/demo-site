@@ -1,0 +1,11 @@
+AuthUserFile /home/users/2/chu.jp-on-blue/web/demo-site/.htpasswd
+AuthGroupFile /dev/null
+AuthName "demo-site"
+AuthType Basic
+require valid-user
+
+ErrorDocument 404 /404.html
+
+Options +Includes
+AddHandler server-parsed html
+

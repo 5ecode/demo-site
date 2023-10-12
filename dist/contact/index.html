@@ -46,7 +46,7 @@
             <dd class="formUnit_detail"><input type="email" name="email" class="c-input" required></dd>
             <dt class="formUnit_theme">電話番号</dt>
             <dd class="formUnit_detail"><input type="tel" name="tel" class="c-input" inputmode="numeric" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}"></dd>
-            <dt class="formUnit_theme">お問い合わせ内容<span class="formUnit_ico" required>必須</span></dt>
+            <dt class="formUnit_theme">お問い合わせ内容<span class="formUnit_ico">必須</span></dt>
             <dd class="formUnit_detail"><textarea name="message" class="c-input" rows="8" required></textarea></dd>
           </dl>
           <div class="consentBlock">
@@ -75,7 +75,11 @@
               </dd>
             </dl>
             <p class="consentBlock_agree"><label class="c-inputCheck"><input id="agreeCheck" type="checkbox" name="agree" class="c-inputCheck_input" value="1"><span class="c-inputCheck_parts">個人情報の取り扱いについて同意のうえ送信します。</span></label></p>
-            <p class="consentBlock_btn m-btnHolder"><button id="submitBtn" type="submit" class="m-btnHolder_item c-btn" disabled>内容を確認する</a></p>
+            <div class="consentBlock_btn">
+              <div class="m-btnHolder">
+                <div class="m-btnHolder_item"><input type="submit" name="submitConfirm" value="内容を確認する" class="m-btnHolder_item c-btn"></div>
+              </div>
+            </div>
           </div>
         </form>
       </div>

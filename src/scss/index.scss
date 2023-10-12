@@ -3,44 +3,18 @@
 
 .st-{
   &pageHeader{
-    &_lead{
-      margin-bottom: vw(14);
-      line-height: 1.3;
-      @include mq(md){
-        margin-bottom: vw(16,768);
-      }
-      @include mq(lg){
-        margin-bottom: vw(10,1440);
-      }
-    }
     &_notes{
       opacity: 0;
       top: vw(175);
-      right: vw(18);
-      font-size: vw(16,375);
+      right: vw(20);
       @include animation(fadeIn .8s 1.8s both);
       @include mq(md){
         top: vw(330,768);
         right: vw(77,768);
-        font-size: vw(16,768);
       }
       @include mq(lg){
         top: vw(157,1440);
         right: vw(194,1440);
-        font-size: vw(20,1440);
-      }
-    }
-    &_ttl{
-      font-size: vw(56,375);
-      letter-spacing: .06em;
-      line-height: .96;
-      @include mq(md){
-        font-size: vw(56,768);
-      }
-      @include mq(lg){
-        font-size: vw(72,1440);
-        letter-spacing: normal;
-        line-height: 1.2;
       }
     }
     &_img{
@@ -94,6 +68,37 @@
 /*--------------------------------------------------------------------
   @TOPページ
 ----------------------------------------------------------------------*/
+.headingHolder{
+  &_ttl{
+    margin-bottom: vw(14,320);
+    font-size: max(vw(14,320), 14px);
+    font-weight: normal;
+    line-height: 1.3;
+    @include mq(md){
+      margin-bottom: vw(12,600);
+      font-size: max(vw(13,600), 13px);
+    }
+    @include mq(lg){
+      margin-bottom: vw(6,769);
+      font-size: max(vw(11,769), 11px);
+    }
+  }
+  &_lead{
+    font-size: max(vw(48,320), 48px);
+    font-family: $fontEn;
+    font-weight: bold;
+    letter-spacing: .06em;
+    line-height: .96;
+    @include mq(md){
+      font-size: max(vw(44,600), 44px);
+    }
+    @include mq(lg){
+      font-size: max(vw(38,769), 38px);
+      letter-spacing: normal;
+      line-height: 1.2;
+    }
+  }
+}
 .about{
   position: relative;
   margin: 0 min(-4vw,15px);
