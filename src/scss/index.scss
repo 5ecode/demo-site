@@ -1,114 +1,200 @@
 @charset 'utf-8';
 @use "setting" as *;
 
-.st-{
-  &pageHeader{
-    &_notes{
-      opacity: 0;
-      top: vw(175);
-      right: vw(20);
-      @include animation(fadeIn .8s 1.8s both);
-      @include mq(md){
-        top: vw(330,768);
-        right: vw(77,768);
-      }
-      @include mq(lg){
-        top: vw(157,1440);
-        right: vw(194,1440);
-      }
+.st-pageHeader {
+  height: vw(745, 375);
+
+  @include mq(md) {
+    height: vw(1104, 768);
+  }
+
+  @include mq(lg) {
+    height: vw(860, 1440);
+  }
+
+  &::before {
+    width: vw(287, 375);
+    height: vw(580, 375);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)),
+      url(/assets/images/index/kv_img.jpg);
+    background-size: 100% 100%, vw(1290, 375) auto;
+    background-position: 0 0, vw(-549, 375) vw(-2, 375);
+    animation: from-left .8s .5s both;
+    opacity: 0;
+
+    @include mq(md) {
+      width: vw(600, 768);
+      height: vw(890, 768);
+      background-size: 100% 100%, vw(1992, 768) auto;
+      background-position: 0 0, vw(-761, 768) vw(-4, 768);
     }
-    &_img{
-      margin-bottom: vw(87);
-      @include animation(from-left 1s .5s both);
-      @include mq(md){
-        width: vw(600,768);
-        margin-bottom: vw(134,768);
-      }
-      @include mq(lg){
-        width: vw(1100,1440);
-        margin-bottom: vw(100,1440);
-      }
-      &::before{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0, .34);
-        content: "";
-      }
+
+    @include mq(lg) {
+      width: vw(1100, 1440);
+      height: vw(640, 1440);
+      background-size: 100% 100%, vw(1361, 1440) auto;
+      background-position: 0 0, vw(-198, 1440) vw(-4, 1440);
     }
-    &::after{
-      @include animation(from-right .8s 1s both);
-      width: vw(283);
-      @include mq(md){
-        width : vw(562,768);
-      }
+  }
+
+  &::after {
+    @include animation(from-right .8s 1s both);
+    width: vw(283);
+    height: vw(667);
+    opacity: 0;
+
+    @include mq(md) {
+      width: vw(562, 768);
+      height: vw(1024, 768);
+    }
+
+    @include mq(lg) {
+      height: vw(740, 1440);
     }
   }
 }
 
-@include keyframes(from-left){
-  0%{
+@include keyframes(from-left) {
+  0% {
     transform: translateX(-100%);
+    opacity: 0;
   }
-  100%{
+
+  100% {
     transform: translateX(0);
+    opacity: 1;
   }
 }
-@include keyframes(from-right){
-  0%{
+
+@include keyframes(from-right) {
+  0% {
     transform: translateX(100%);
+    opacity: 0;
   }
-  100%{
+
+  100% {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
 /*--------------------------------------------------------------------
   @TOPページ
 ----------------------------------------------------------------------*/
-.headingHolder{
-  &_ttl{
-    margin-bottom: vw(14,320);
-    font-size: max(vw(14,320), 14px);
-    font-weight: normal;
+.headingHolder {
+  top: vw(175);
+  right: vw(20);
+  animation: fadeIn 1s ease-out 1.8s both;
+
+  @include mq(md) {
+    top: vw(330, 768);
+    right: vw(80, 768);
+  }
+
+  @include mq(lg) {
+    top: vw(157, 1440);
+    right: vw(195, 1440);
+  }
+
+  &_ttl {
+    font-size: vw(16, 375);
+    font-weight: 600;
     line-height: 1.3;
-    @include mq(md){
-      margin-bottom: vw(12,600);
-      font-size: max(vw(13,600), 13px);
+
+    @include mq(md) {
+      font-size: vw(16, 768);
     }
-    @include mq(lg){
-      margin-bottom: vw(6,769);
-      font-size: max(vw(11,769), 11px);
+
+    @include mq(lg) {
+      font-size: vw(20, 1440);
     }
   }
-  &_lead{
-    font-size: max(vw(48,320), 48px);
+
+  &_lead {
+    margin-top: vw(10);
     font-family: $fontEn;
-    font-weight: bold;
-    letter-spacing: .06em;
-    line-height: .96;
-    @include mq(md){
-      font-size: max(vw(44,600), 44px);
+    font-size: vw(56);
+    font-weight: 800;
+    letter-spacing: ls(63);
+    line-height: lh(56, 53);
+
+    @include mq(md) {
+      margin-top: vw(10, 768);
+      font-size: vw(56, 768);
     }
-    @include mq(lg){
-      font-size: max(vw(38,769), 38px);
-      letter-spacing: normal;
-      line-height: 1.2;
+
+    @include mq(lg) {
+      margin-top: vw(10, 1440);
+      font-size: vw(72, 1440);
     }
   }
 }
-.about{
+
+.about {
+  display: flex;
   position: relative;
-  margin: 0 min(-4vw,15px);
-  @include mq(md){
-    margin: 0 min(-4vw,30px);
+  margin-inline: min(vw(-15, 375), -15px);
+  padding: vw(50, 375) vw(15, 375);
+  aspect-ratio: 768 / 479;
+  background-image: linear-gradient(rgba(0, 0, 0, .16), rgba(0, 0, 0, .16)), url(/assets/images/index/about_img.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 866px auto;
+  background-position: 0 0, -265px 0;
+
+
+  &_notes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    padding: min(percent(40, 345), 40px) min(percent(20, 345), 20px);
+    background: rgba(255, 255, 255, .95);
   }
-  @include mq(lg){
+
+  &_txt {
+    margin-top: min(vw(25, 375), 25px);
+    font-size: rem(14);
+    line-height: lh(14, 28);
+  }
+
+  &_btn {
+    margin-top: min(vw(30, 375), 30px);
+  }
+
+  @include mq(md) {
+    aspect-ratio: 768 / 479;
+    margin-inline: min(vw(-30, 768), -30px);
+    padding: 0;
+    background-size: 100% 100%, vw(768, 768) auto;
+    background-position: 0 0, 50% 0;
+
+    &_notes {
+      width: min(percent(590, 768), 590px);
+      padding: min(percent(40, 590), 40px) min(percent(30, 590), 30px);
+    }
+
+    &_txt {
+      margin-top: min(vw(25, 768), 25px);
+      font-size: fluid-rem(14, 16, 600, 768);
+      line-height: lh(16, 32);
+    }
+
+    &_btn {
+      margin-top: min(vw(30, 768), 30px)
+    }
+  }
+
+  @include mq(lg) {
+    aspect-ratio: 1100 / 607;
+    height: auto;
     margin: 0;
+    padding-inline: min(percent(50, 1100), 50px);
+    background-size: 100% 100%, min(percent(1100, 1100), 1100px) auto;
+    background-position: 0 0, 50% max(vw(-109, 1100), -109px);
+
     &::before,
-    &::after{
+    &::after {
       position: absolute;
       bottom: 0;
       z-index: -1;
@@ -117,182 +203,250 @@
       background: #f0f0f0;
       content: "";
     }
-    &::before{
+
+    &::before {
       left: -50vw;
     }
-    &::after{
+
+    &::after {
       right: -50vw;
     }
+
+    &_notes {
+      aspect-ratio: 590 / 387;
+      width: min(percent(590, 1000), 590px);
+      margin-inline: 0 auto;
+      padding: 0 min(percent(30, 1000), 30px);
+    }
+
+    &_txt {
+      margin-top: min(vw(25, 1100), 25px);
+      font-size: min(vw(16, 1100), rem(16));
+    }
+
+    &_btn {
+      margin-top: min(vw(30, 1100), 30px);
+    }
   }
-  @include mq(xl){
+
+  @include mq(xl) {
+    background-size: 100% 100%, percent(1100, 1100) auto;
+    background-position: 0 0, 50% vw(-108, 1440);
+
     &::before,
-    &::after{
-      height: max(6.9vw,100px);
+    &::after {
+      height: max(vw(100, 1440), 100px);
     }
-  }
-  &_notes{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: percent(345,375);
-    padding: min(10.7vw,40px) min(8vw,30px);
-    background: rgba(255, 255, 255, .95);
-    @include mq(md){
-      width: clamp(540px,90%,590px);
-      padding: min(5.3vw,40px) min(4vw,30px);
+
+    &_notes {
+      aspect-ratio: auto;
+      width: max(percent(590, 1000), 590px);
+      padding: max(percent(50, 1100), 50px) max(percent(30, 1000), 30px);
     }
-    @include mq(lg){
-      left: min(4.54%,50px);
-      transform: translate(0,-50%);
-      width: clamp(391px,53.7%,590px);
-      padding: min(3.5vw,50px) min(2.1vw,30px);
+
+    &_txt {
+      margin-top: max(vw(25, 1440), 25px);
+      font-size: max(vw(16, 1440), rem(16));
     }
-    @include mq(xl){
-      left: max(4.54%,50px);
-      width: max(53.7%,590px);
-      padding: max(3.5vw,50px) max(2.1vw,30px);
-    }
-  }
-  &_txt{
-    margin: max(1vw,17px) 0 max(1vw,19px);
-    @include mq(md){
-      margin: min(3.3vw,25px) 0 min(2.7vw,20px);
-      line-height: 2;
-    }
-    @include mq(lg){
-      margin: min(2.1vw,30px) 0;
-    }
-    @include mq(xl){
-      margin: max(2.1vw,30px) 0;
+
+    &_btn {
+      margin-top: max(vw(30, 1440), 30px);
     }
   }
 }
 
-.unitHolder{
+.unitHolder {
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
-  &_item{
-    margin: 20px 0;
-  }
-  @include mq(md){
-    &_item{
-      width: min(73.5%,520px);
-      margin: 30px 0;
+  gap: 40px;
+  padding-block: 40px;
+
+  @include mq(md) {
+    gap: min(vw(80, 768), 80px);
+    padding-block: min(vw(60, 768), 60px);
+
+    &_item {
+      width: min(percent(520, 708), 520px);
     }
   }
-  @include mq(lg){
+
+  @include mq(lg) {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: min(5.6vw,80px) 0 min(4.2vw,60px);
-    &_item{
-      width: min(47.3%,520px);
-      margin: 0;
+    gap: min(percent(60, 1110), 60px);
+    padding-block: min(vw(80, 1440), 80px) min(vw(60, 1440), 60px);
+
+    &_item {
+      flex: 1;
     }
   }
-  @include mq(xl){
-    padding: max(5.5vw,80px) 0 max(4.1vw,60px);
-    &_item{
-      width: max(47.2%,520px);
+
+  @include mq(xl) {
+    gap: max(percent(60, 1110), 60px);
+    padding-block: max(vw(80, 1440), 80px) max(vw(60, 1440), 80px);
+  }
+}
+
+.contentUnit {
+  &_img {
+    margin-top: 30px;
+  }
+
+  &_txt {
+    margin-top: 25px;
+  }
+
+  &_btn {
+    margin-top: 30px;
+  }
+
+  @include mq(xl) {
+    &_img {
+      margin-top: max(vw(30, 1440), 30px);
+    }
+
+    &_txt {
+      margin-top: max(vw(25, 1440), 25px);
+      font-size: max(vw(16, 1440), rem(16));
+    }
+
+    &_btn {
+      margin-top: max(vw(30, 1440), 30px);
     }
   }
 }
 
-.contentUnit{
-  &_img{
-    margin: 30px 0 25px;
-  }
-  &_txt{
-    margin-bottom: 25px;
-  }
-  @include mq(xl){
-    &_img{
-      margin: max(2.1vw,30px) 0 max(1.8vw,25px);
-    }
-    &_txt{
-      margin-bottom: max(1.8vw,25px);
-    }
-  }
-}
+.topics {
+  padding-block: 40px;
 
-.topics{
-  padding: 40px 0;
-  &_inner{
+  &_inner {
     margin: 30px 0 0 auto;
   }
-  @include mq(lg){
-    padding: min(4.2vw,60px) 0;
-    &_inner{
-      width: min(63.64%,700px);
+
+  &_btn {
+    margin-top: 30px;
+  }
+
+  @include mq(md) {
+    padding-block: min(vw(60, 768), 60px);
+  }
+
+  @include mq(lg) {
+    padding-block: min(vw(60, 1440), 60px);
+
+    &_inner {
+      width: min(percent(708, 1100), 708px);
+      margin-top: min(vw(30, 1440), 30px);
     }
-    &_btn{
+
+    &_btn {
       text-align: right;
     }
   }
-  @include mq(xl){
-    padding: max(4.1vw,60px) 0;
-    &_inner{
-      width: max(63.64%,700px);
-      margin-top: max(2vw,30px);
+
+  @include mq(xl) {
+    padding-block: max(vw(60, 1440), 60px);
+
+    &_inner {
+      width: max(percent(708, 1100), 708px);
+      margin-top: max(vw(30, 1440), 30px);
+    }
+
+    &_btn {
+      margin-top: max(vw(30, 1440), 30px);
     }
   }
 }
 
-.topicsList{
-  &_item{
-    margin-bottom: 30px;
-    @include mq(xl){
-      margin-bottom: max(2vw,30px);
+.topicsList {
+  &_item {
+    margin-top: 20px;
+
+    @include mq(md) {
+      margin-top: 30px;
+    }
+
+    @include mq(xl) {
+      margin-top: max(vw(30, 1440), 30px);
     }
   }
 }
 
-.contact{
-  display: flex;
-  flex-direction: column;
-  padding: 40px 0;
-  &_fig{
+.contact {
+  padding-block: 40px;
+
+  &_inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_fig {
     opacity: 0;
     order: -1;
-    margin-bottom: 30px;
     transition: opacity 1s .4s cubic-bezier(0.6, 0.2, 0.1, 1);
+
     .is-show & {
       opacity: 1;
     }
   }
-  &_txt{
-    margin: 26px 0 36px;
+
+  &_notes {
+    margin-top: 30px;
   }
-  @include mq(md){
-    width: min(73.5%,520px);
-    padding-bottom: 80px;
+
+  &_txt {
+    margin-top: 30px;
   }
-  @include mq(lg){
-    align-items: center;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    width: 100%;
-    padding: min(4.2vw,60px) 0 min(8.4vw,120px);
-    &_notes{
-      width: min(46.37%,510px);
-    }
-    &_fig{
-      width: min(50%,550px);
-      margin: 0;
+
+  &_btn {
+    margin-top: 42px;
+  }
+
+  @include mq(md) {
+    padding-block: min(vw(60, 768), 60px);
+
+    &_inner {
+      width: min(percent(520, 708), 520px);
     }
   }
-  @include mq(xl){
-    padding: max(4.1vw,60px) 0 max(8.2vw,120px);
-    &_notes{
-      width: max(45.4%,500px);
+
+  @include mq(lg) {
+    padding-block: min(vw(60, 1440), 60px) min(vw(120, 1440), 120px);
+
+    &_inner {
+      align-items: center;
+      flex-direction: row-reverse;
+      gap: min(percent(80, 1110), 80px);
+      width: 100%;
     }
-    &_txt{
-      margin: max(1.8vw,26px) 0 max(2.5vw,36px);
+
+    &_notes {
+      width: min(percent(440, 1100), 440px);
     }
-    &_fig{
-      width: max(50%,550px);
+
+    &_fig {
+      width: min(percent(580, 1100), 580px);
+    }
+  }
+
+  @include mq(xl) {
+    padding-block: max(vw(60, 1440), 60px) max(vw(120, 1440), 120px);
+
+    &_notes {
+      width: max(percent(440, 1110), 440px);
+    }
+
+    &_txt {
+      margin-top: max(vw(26, 1440), 26px);
+      font-size: max(vw(16, 1440), rem(16));
+    }
+
+    &_btn {
+      margin-top: max(vw(36, 1440), 36px);
+    }
+
+    &_fig {
+      width: max(percent(580, 1110), 580px);
     }
   }
 }

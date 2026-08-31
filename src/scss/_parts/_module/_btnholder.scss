@@ -1,16 +1,19 @@
 @charset "utf-8";
 @use "../../setting" as *;
+
 /*--------------------------------------------------------------------
    Module : ボタンの入れ物
 ----------------------------------------------------------------------*/
-.m-{
-   &btnHolder{
+.m- {
+  &btnHolder {
     display: inline-flex;
     gap: 20px;
-    &_item{
-      min-width: 160px;
-      @include mq(xl){
-        width: max(11.1vw,160px);
+
+    &_item {
+      width: 160px;
+
+      @include mq(xl) {
+        width: max(vw(160, 1440), 160px);
       }
     }
   }

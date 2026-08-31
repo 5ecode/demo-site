@@ -1,25 +1,121 @@
 @charset 'utf-8';
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
 /* --------------------------------------------------------------------
   @変数
 ---------------------------------------------------------------------- */
 /* Media Queries */
-$breakpoints: (
-  sm: 'screen and (max-width: 428px)',
-  md: 'screen and (min-width: 600px)',
-  lg: 'screen and (min-width: 769px)',
-  xl: 'screen and (min-width: 1440px)'
-);
+$breakpoints: (sm: 'screen and (max-width: 428px)', md: 'screen and (min-width: 600px)', // タブレット表示
+    lg: 'screen and (min-width: 834px)', // PC表示
+    xl: 'screen and (min-width: 1440px)' // 大きい表示
+  );
 
+/* font-size */
+$baseFontSize: 16;
+/* font-famry */
 $fontEn: 'Montserrat', sans-serif;
 
 
 /* --------------------------------------------------------------------
   @function
 ---------------------------------------------------------------------- */
-/* レスポンシブvw値 */
+/* フォントrem */
+@function rem($pixels) {
+  @return calc($pixels / $baseFontSize) * 1rem;
+}
+
+// line-height計算関数
+@function lh($font-size, $line-height-px) {
+  $raw: math.div($line-height-px, $font-size);
+  @return round-decimal($raw);
+}
+
+// letter-spacing計算関数
+@function ls($font-size) {
+  @return math.div($font-size, 1000) * 1em;
+}
+
+// 四捨五入用関数
+@function round-decimal($number) {
+  @return math.div(math.round($number * 100), 100);
+}
+
+// 単位を取り除く関数
+@function strip-unit($number) {
+
+  @if meta.type-of($number)=='number' and not math.is-unitless($number) {
+    @return math.div($number, $number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+// レスポンシブvw値
 @function vw($size, $viewport: 375) {
-  $rate: calc($viewport / $size);
-  @return calc(100vw / $rate);
+  $rate: math.div($size, $viewport);
+  $vw-value: $rate * 100vw;
+  @return round-decimal($vw-value);
+}
+
+/* レスポンシブ%値 */
+@function percent($size, $viewport: 750) {
+  $rate: math.div($size, $viewport);
+  $percent-value: $rate * 100%;
+  @return round-decimal($percent-value);
+}
+
+// clamp：ウィンドウ幅基準
+@function fluid-vw($min, $max, $min-viewport: 768px, $max-viewport: 1400px) {
+  $min-num: strip-unit($min);
+  $max-num: strip-unit($max);
+  $min-viewport-num: strip-unit($min-viewport);
+  $max-viewport-num: strip-unit($max-viewport);
+
+  // 傾き
+  $slope: math.div($max-num - $min-num, $max-viewport-num - $min-viewport-num );
+
+  // 切片
+  $intercept: $min-num - ($slope * $min-viewport-num);
+
+  // 小数点以下2桁に丸める
+  $slope: round-decimal($slope * 100);
+  $intercept: round-decimal($intercept);
+
+  @return clamp(#{$min-num}px, calc(#{$slope}vw + #{$intercept}px), #{$max-num}px);
+}
+
+// clamp：フォントサイズ（rem）用
+@function fluid-rem($min, $max, $min-viewport: 768px, $max-viewport: 1400px) {
+  $min-num: strip-unit($min);
+  $max-num: strip-unit($max);
+  $min-viewport-num: strip-unit($min-viewport);
+  $max-viewport-num: strip-unit($max-viewport);
+
+  $slope: math.div($max-num - $min-num, $max-viewport-num - $min-viewport-num);
+
+  $intercept: $min-num - ($slope * $min-viewport-num);
+
+  $slope: round-decimal($slope * 100);
+  $intercept: round-decimal(math.div($intercept, $baseFontSize));
+
+  @return clamp(#{rem($min-num)}, calc(#{$slope}vw + #{$intercept}rem), #{rem($max-num)});
+}
+
+// 逆可変（画面が広くなると値が小さくなる）clampを計算する関数
+@function clamp-reverse($min-width, $max-width, $min-value, $max-value) {
+  // 1pxあたりの変化量（傾き）を計算
+  $slope: math.div($min-value - $max-value, $max-width - $min-width);
+
+  // vwの係数を計算
+  $vw-coefficient: $slope * 100;
+
+  // 固定値（切片）を計算
+  $base-px: $max-value - ($slope * $min-width);
+
+  // clamp(最小値, 計算式, 最大値) の形で返す
+  // ※Sassのコンパイルエラーを防ぐため、文字列補間 #{} を使用
+  @return clamp(#{$min-value}px, #{$base-px}px + #{$vw-coefficient}vw, #{$max-value}px);
 }
 
 /* --------------------------------------------------------------------
@@ -28,45 +124,41 @@ $fontEn: 'Montserrat', sans-serif;
 /* メディアクエリ 例：@include mq(lg){};*/
 @mixin mq($bp) {
   @media #{map-get($breakpoints, $bp)} {
-   @content;
+    @content;
   }
 }
 
-/* レスポンシブ%値 */
-@function percent($size, $viewport: 375) {
-  $rate: calc($size / $viewport);
-  @return $rate * 100%;
+// 見出し
+@mixin titleBase($size: 16, $weight: 800, $ls: false, $lh: false, $range: false) {
+  @if $range {
+    @content;
+  }
+
+  @else {
+    font-size: rem($size);
+  }
+
+  font-family: $fontEn;
+  font-weight: $weight;
+
+  @if $lh {
+    line-height: lh($size, $lh);
+  }
+
+  @if $ls {
+    letter-spacing: ls($ls);
+  }
 }
 
-// デフォルトfontサイズ
-@mixin defaultFont($size: null) {
-  @if $size == md{
-    @include mq(md){
-      font-size: 1.6rem;
-    }
-  }
-  @else if $size == lg{
-    @include mq(lg){
-      font-size: clamp(1.4rem,1.5vw,1.6rem);
-    }
-  }
-  @else if $size == xl{
-    @include mq(xl){
-      font-size: max(1.1vw,1.6rem);
-    }
-  }
-  @else{
-    font-size: min(4.6vw,1.6rem);
-    @include mq(md){
-      font-size: 1.6rem;
-    }
-    @include mq(lg){
-      font-size: clamp(1.4rem,1.5vw,1.6rem);
-    }
-    @include mq(xl){
-      font-size: max(1.1vw,1.6rem);
-    }
-  }
+// カスタムチェック・ラジオボタン非表示
+@mixin inputHidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
 }
 
 /* マウスオーバー */
@@ -79,67 +171,22 @@ $fontEn: 'Montserrat', sans-serif;
 }
 
 /* hover opacity */
-@mixin alpha($param:.5){
+@mixin alpha($param: .8) {
   transition: opacity .3s ease;
-  @include hover{
+
+  @include hover {
     opacity: $param;
   }
 }
 
-/* 格子レイアウト 例：@include flexGrid(5px);*/
-@mixin flexGrid($margin) {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -$margin;
-  > *{
-    flex-grow: 1;
-    width: 100%;
-    margin: $margin;
-  }
-}
-
-/* 格子レイアウトflexItem 例：@include flexItemCell(4, 10px);*/
-@mixin flexItemCell($cell:null,$margin:null) {
-  @if $cell == 1{
-    max-width: calc(8.333333% - #{$margin});
-  }
-  @if $cell == 2{
-    max-width: calc(16.666667% - #{$margin});
-  }
-  @if $cell == 3{
-    max-width: calc(25% - #{$margin});
-  }
-  @if $cell == 4{
-    max-width: calc(33.333333% - #{$margin});
-  }
-  @if $cell == 5{
-    max-width: calc(41.666667% - #{$margin});
-  }
-  @if $cell == 6{
-    max-width: calc(50% - #{$margin});
-  }
-  @if $cell == 8{
-    max-width: calc(66.666667% - #{$margin});
-  }
-  @if $cell == 9{
-    max-width: calc(75% - #{$margin});
-  }
-  @if $cell == 10{
-    max-width: calc(83.333333% - #{$margin});
-  }
-  @if $cell == 11{
-    max-width: calc(91.666667% - #{$margin});
-  }
-}
-
 /* キーフレーム 例：@include keyframes(menu-bar01);*/
-@mixin keyframes($animation-name: animaton){
-  @keyframes #{$animation-name}{
+@mixin keyframes($animation-name: animaton) {
+  @keyframes #{$animation-name} {
     @content;
   }
 }
 
 /* アニメーション 例：@include animation(menu-bar01 .75s forwards);*/
-@mixin animation($animation-name){
+@mixin animation($animation-name) {
   animation: $animation-name;
 }

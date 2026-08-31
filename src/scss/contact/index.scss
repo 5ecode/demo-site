@@ -6,107 +6,199 @@
 ----------------------------------------------------------------------*/
 /* Overwrite
 --------------------------------------------------*/
-.c-btn{
-  &[name="submitBack"]{
+.st-pageHeader {
+  &::before {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)), url(/assets/images/contact/heading_img.jpg);
+    background-size: 100% 100%, vw(570, 375) auto;
+    background-position: 0 0, vw(-145, 375) vw(-40, 375);
+
+    @include mq(md) {
+      background-size: 100% 100%, vw(1549, 768) auto;
+      background-position: 0 0, vw(-434, 768) vw(-219, 768);
+    }
+
+    @include mq(lg) {
+      background-size: 100% 100%, vw(1133, 1440) auto;
+      background-position: 0 0, 0 vw(-164, 1440);
+    }
+  }
+}
+
+.c-btn {
+  font-size: rem(14);
+
+  &[name="submitBack"] {
     background: #fff;
     color: #000;
-    @include hover{
+
+    @include hover {
       background: #000;
       color: #fff;
     }
+  }
+
+  @include mq(xl) {
+    font-size: max(vw(14, 1440), rem(14));
   }
 }
 
 
 /* Unique
 --------------------------------------------------*/
-.contact{
-  padding-bottom: 5em;
-  @include mq(lg){
-    width: max(63.6%,700px);
+.contact {
+  @include mq(lg) {
+    width: 700px;
     margin: 0 auto;
   }
-  @include mq(xl){
-    width: max(63.6%,700px);
+
+  @include mq(xl) {
+    width: max(vw(700, 1440), 700px);
   }
 }
-.formUnit{
+
+.formUnit {
   margin-top: 3.4em;
-  &_theme{
+
+  &_theme {
     display: inline-block;
     position: relative;
-    margin-bottom: 5px;
-    padding-right: 3em;
+    font-weight: 700;
+
+    &:has(.formUnit_tag) {
+      padding-right: 3em;
+    }
+
+    &:not(:first-of-type) {
+      margin-top: 38px;
+    }
   }
-  &_ico{
+
+  &_tag {
     display: inline-block;
     position: absolute;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
     background: #333;
-    padding: .2em .518em;
-    font-size: .8em;
+    padding-inline: 5px;
+    font-size: rem(12);
+    font-weight: 500;
     color: #fff;
-    line-height: 1;
+    letter-spacing: ls(4);
+    line-height: lh(12, 18);
   }
-  &_detail{
-    margin-bottom: 2em;
+
+  &_detail {
+    margin-top: 8px;
+  }
+
+  @include mq(lg) {
+    &_theme {
+      &:not(:first-of-type) {
+        margin-top: 40px;
+      }
+    }
+  }
+
+  @include mq(lg) {
+    &_theme {
+      &:not(:first-of-type) {
+        margin-top: max(vw(40, 1440), 40px);
+      }
+    }
+
+    &_tag {
+      font-size: max(vw(12, 1440), rem(12));
+    }
   }
 }
 
-.formList{
+.formList {
   display: flex;
   flex-direction: column;
-  margin-top: 4px;
-  @include mq(md){
+  gap: 14px;
+  margin: 16px 0 0 10px;
+
+  @include mq(md) {
     flex-direction: row;
-    &_item{
-      margin: 0 40px 0 10px;
+    gap: 50px;
+    margin-top: 14px;
+  }
+}
+
+.consentBlock {
+  margin-top: 40px;
+
+  &_ttl {
+    @include titleBase($ls: 4, $lh: 21);
+  }
+
+  &_agree,
+  &_btn {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  &_agree {
+    width: vw(290, 375);
+    margin-inline: auto;
+    font-size: rem(14);
+    line-height: lh(14, 18);
+    > * {
+      display: inline-block;
+      text-align: left;
+    }
+  }
+
+  @include mq(md) {
+    &_agree {
+      width: auto;
+      font-size: rem(16);
+    }
+  }
+
+  @include mq(xl) {
+    margin-top: max(vw(40, 1440), 40px);
+
+    &_ttl {
+      font-size: max(vw(16, 1440), rem(16));
+    }
+
+    &_agree {
+      font-size: max(vw(16, 1440), rem(16));
+    }
+
+    &_agree,
+    &_btn {
+      margin-top: max(vw(40, 1440), 40px);
     }
   }
 }
 
-.consentBlock{
-  &_ttl{
-    @include defaultFont;
-  }
-  &_agree{
-    font-size: min(3.6vw,1.4rem);
-    text-align: center;
-    letter-spacing: -.01em;
-  }
-  &_btn{
-    margin-top: min(16.6vw,62px);
-    text-align: center;
-  }
-  @include mq(md){
-    &_agree{
-      font-size: min(4.6vw,1.6rem);
-    }
-  }
-  @include mq(xl){
-    &_agree{
-      font-size: max(1.1vw,1.6rem);
-    }
-  }
-}
-
-.privacyFrame{
+.privacyFrame {
   overflow: auto;
   overflow-x: hidden;
-  height: min(60.3vw,226px);
-  margin: 10px 0 2.5em;
+  height: 226px;
+  margin-top: 10px;
   padding: 5px 10px;
   border: 1px solid #333;
   text-align: left;
-  &_theme{
-    font-weight: bold;
+
+  &_theme {
+    font-weight: 700;
+  }
+
+  @include mq(lg) {
+    height: 252px;
+  }
+
+  @include mq(lg) {
+    height: max(vw(252, 1440), 252px);
   }
 }
 
-.privacyList{
-  &_theme{
+.privacyList {
+  &_theme {
     margin-top: 1.5em;
   }
 }

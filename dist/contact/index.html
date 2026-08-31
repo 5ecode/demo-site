@@ -11,25 +11,19 @@
 </head>
 <body>
   <!--#include virtual="/assets/inc/parts/header.html" -->
-  <main>
-    <header class="st-pageHeader">
+  <main class="l-main">
+    <div class="st-pageHeader">
       <div class="st-pageHeader_notes">
         <h1 class="st-pageHeader_ttl">CONTACT</h1>
-        <p class="st-pageHeader_txt">問い合わせ</p>
+        <p class="st-pageHeader_txt">お問い合わせ</p>
       </div>
-      <picture class="st-pageHeader_img">
-        <source media="(min-width:769px)" srcset="/assets/images/contact/heading_img_pc.jpg">
-        <source media="(min-width:600px)" srcset="/assets/images/contact/heading_img_tb.jpg">
-        <img src="/assets/images/contact/heading_img_sp.jpg" alt="" class="u-fullImg">
-      </picture>
-    </header>
-
+    </div>
     <div class="l-base">
       <div class="contact u-appear" data-animation="opacity">
         <p>ご依頼やご相談についてのご質問やご要望がございましたら、下記フォームよりお気軽にお問い合わせください。送付いただいた内容を確認の上、担当者からご連絡させていただきます。</p>
         <form id="contactForm" action="404.html" method="post">
           <dl class="formUnit">
-            <dt class="formUnit_theme">お問い合わせ種別<span class="formUnit_ico">必須</span></dt>
+            <dt class="formUnit_theme">お問い合わせ種別<span class="formUnit_tag">必須</span></dt>
             <dd class="formUnit_detail">
               <ul class="formList">
                 <li class="formList_item"><label class="c-inputRadio"><input type="radio" name="kinds" class="c-inputRadio_input" checked><span class="c-inputRadio_parts">制作依頼</span></label></li>
@@ -40,13 +34,13 @@
             </dd>
             <dt class="formUnit_theme">会社名・団体名</dt>
             <dd class="formUnit_detail"><input type="text" class="c-input"></dd>
-            <dt class="formUnit_theme">お名前<span class="formUnit_ico">必須</span></dt>
+            <dt class="formUnit_theme">お名前<span class="formUnit_tag">必須</span></dt>
             <dd class="formUnit_detail"><input type="text" name="name" class="c-input" required></dd>
-            <dt class="formUnit_theme">メールアドレス<span class="formUnit_ico">必須</span></dt>
+            <dt class="formUnit_theme">メールアドレス<span class="formUnit_tag">必須</span></dt>
             <dd class="formUnit_detail"><input type="email" name="email" class="c-input" required></dd>
             <dt class="formUnit_theme">電話番号</dt>
             <dd class="formUnit_detail"><input type="tel" name="tel" class="c-input" inputmode="numeric" pattern="\d{2,4}-?\d{2,4}-?\d{3,4}"></dd>
-            <dt class="formUnit_theme">お問い合わせ内容<span class="formUnit_ico">必須</span></dt>
+            <dt class="formUnit_theme">お問い合わせ内容<span class="formUnit_tag">必須</span></dt>
             <dd class="formUnit_detail"><textarea name="message" class="c-input" rows="8" required></textarea></dd>
           </dl>
           <div class="consentBlock">
@@ -74,7 +68,12 @@
                 </dl>
               </dd>
             </dl>
-            <p class="consentBlock_agree"><label class="c-inputCheck"><input id="agreeCheck" type="checkbox" name="agree" class="c-inputCheck_input" value="1"><span class="c-inputCheck_parts">個人情報の取り扱いについて同意のうえ送信します。</span></label></p>
+            <p id="agreeCheck" class="consentBlock_agree">
+              <label class="c-inputCheck">
+                <input type="checkbox" name="agree" class="c-inputCheck_input" value="1" required>
+                <span class="c-inputCheck_parts">個人情報の取り扱いについて同意のうえ送信します。</span>
+              </label>
+            </p>
             <div class="consentBlock_btn">
               <div class="m-btnHolder">
                 <div class="m-btnHolder_item"><input type="submit" name="submitConfirm" value="内容を確認する" class="m-btnHolder_item c-btn"></div>

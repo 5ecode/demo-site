@@ -4,160 +4,267 @@
 /*--------------------------------------------------------------------
   @ABOUT US
 ----------------------------------------------------------------------*/
-.vision{
-  @include mq(md){
-    width: min(70%,470px);
+/* Overwrite
+--------------------------------------------------*/
+.st-pageHeader {
+
+  &::before {
+    background-image: linear-gradient(rgba(34, 34, 34, 0.34), rgba(34, 34, 34, 0.34)), url(/assets/images/about/heading_img.jpg);
+    background-size: 100% 100%, vw(856, 375) auto;
+    background-position: 0 0, vw(-269, 375) 0;
+
+    @include mq(md) {
+      background-size: 100% 100%, vw(1268, 768) auto;
+      background-position: 0 0, vw(-323, 768) vw(-10, 768);
+    }
+
+    @include mq(lg) {
+      background-size: 100% 100%, vw(1095, 1440) auto;
+      background-position: 0 0, 0 vw(-45, 1440);
+    }
+  }
+}
+
+/* Unique
+--------------------------------------------------*/
+.section-ttl {
+  @include titleBase(32, $ls: 68, $lh: 39);
+
+  @include mq(xl) {
+    font-size: max(vw(32, 1440), rem(32));
+  }
+}
+
+.vision {
+
+  &_catch {
+    margin-top: 22px;
+    font-size: rem(24);
+  }
+
+  &_notes {
+    margin-top: 26px;
+  }
+
+  @include mq(md) {
+    width: 468px;
     margin: 0 auto;
   }
-  @include mq(lg){
-    width: min(59.1%,650px);
+
+  @include mq(lg) {
+    width: vw(648, 1440);
   }
-  @include mq(xl){
-    width: max(59%,650px);
+
+  @include mq(xl) {
+    max-width: max(vw(648, 1440), 648px);
+
+    &_catch {
+      margin-top: max(vw(22, 1440), 22px);
+      font-size: max(vw(24, 1440), rem(24));
+    }
+
+    &_notes {
+      margin-top: max(vw(26, 1440), 26px);
+    }
   }
 }
 
-.contentCatch{
-  margin-top: 29px;
-  margin-bottom: 22px;
-  font-size: min(6.4vw,2.4rem);
-  font-weight: normal;
-  @include mq(xl){
-    font-size: max(1.7vw,2.4rem);
+.paragraph {
+  font-size: rem(14);
+  font-weight: 500;
+  line-height: lh(14, 28);
+
+  &+& {
+    margin-top: 2em;
+  }
+
+  @include mq(lg) {
+    font-size: rem(16);
+    line-height: lh(16, 32);
+  }
+
+  @include mq(xl) {
+    font-size: max(vw(16, 1440), rem(16));
   }
 }
 
-.paragraph{
-  margin-top: 2em;
-  font-size: min(3.6vw,1.4rem);
-  @include defaultFont(md);
-  @include defaultFont(lg);
-  @include defaultFont(xl);
-}
-
-.message{
+.message {
   position: relative;
-  margin-top: vw(210);
-  padding: vw(125) min(8vw,30px) vw(40);
-  &::before{
+  margin-top: vw(200);
+
+  &::before {
     display: block;
     opacity: 0;
     position: absolute;
     top: vw(-129);
-    left: min(-4vw,15px);
+    left: vw(-20);
     transform: translateX(-10%);
-    width: percent(340);
-    padding-top: percent(230);
+    width: vw(340);
+    padding-top: vw(230);
     background: url(/assets/images/about/message_img.jpg) no-repeat 0 0;
     background-size: 100% auto;
-    transition: all 1s .4s cubic-bezier(0.33, 1, 0.68, 1);
+    transition: opacity 1s .4s cubic-bezier(0.33, 1, 0.68, 1), transform 1s .4s cubic-bezier(0.33, 1, 0.68, 1);
     content: "";
   }
-  &.is-show{
-    &::before{
+
+  &.is-show {
+    &::before {
       opacity: 1;
       transform: translateX(0);
     }
   }
-  @include mq(md){
-    width: min(69.8%,494px);
-    margin: min(27.4vw,210px) 0 0 auto;
-    padding: min(14.2vw,109px) min(5.3vw,40px) min(5.3vw,40px);
-    &::before{
-      top: vw(-130,768);
-      left: percent(-214,494);
-      width: percent(320,494);
-      padding-top: percent(216,494);
-    }
-  }
-  @include mq(lg){
-    display: flex;
-    justify-content: center;
-    width: min(70%,770px);
-    margin-top: min(19.3vw,277px);
-    padding: min(8.4vw,120px) 0;
-    &_inner{
-      width: percent(400,770);
-    }
-    &::before{
-      top: vw(-144,1440);
-      left: percent(-330,770);
-      width: min(54.55%,420px);
-      padding-top: min(37%,282.45px);
-    }
-  }
-  @include mq(xl){
-    width: max(70%,770px);
-    margin-top: max(19.2vw,277px);
-    padding: max(8.3vw,120px) 0;
-    &::before{
-      width: max(54.5%,420px);
-      padding-top: max(36.69%,282.45px);
-    }
-  }
-}
 
-.company{
-  padding: vw(80) 0;
-  &_inner{
-    padding: 30px 0 40px;
-    &::before{
-      display: block;
-      width: 100%;
-      height: 1px;
-      background: #ddd;
-      content: "";
-    }
-  }
-  &_map{
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-top: percent(470,345);
-    iframe{
-      position: absolute;
-      top: 0;
+  @include mq(md) {
+    margin-top: min(vw(210, 768), 264px);
+
+    &::before {
+      top: vw(-130, 768);
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: vw(320, 768);
+      padding-top: vw(216, 768);
     }
   }
-  @include mq(md){
-    padding: min(10.5vw,80px) 0;
-    &_map{
-      padding-top: percent(230,708);
+
+  @include mq(lg) {
+    &::before {
+      top: -144px;
+      width: min(vw(420, 1100), 420px);
+      padding-top: min(vw(282, 1100), 282px);
     }
   }
-  @include mq(xl){
-    padding: max(5.5vw,80px) 0;
-    &_inner{
-      padding: max(2vw,30px) 0 max(2.7vw,40px);
+
+  @include mq(xl) {
+    margin-top: max(vw(264, 1440), 264px);
+
+    &::before {
+      top: max(vw(-144, 1440), -144px);
+      width: max(vw(420, 1440), 420px);
+      padding-top: max(vw(282, 1440), 282px);
     }
   }
 }
 
-.companyList{
-  font-size: min(3.6vw,1.4rem);
-  &_theme{
-    flex-basis: 40%;
+.messageBoard {
+  padding: vw(135) 28px 60px;
+
+  &_notes {
+    margin-top: 30px;
   }
-  &_detail{
-    flex-basis: 60%;
-  }
-  @include mq(md){
-    width: min(95.8%,678px);
+
+  @include mq(md) {
+    width: vw(494, 768);
     margin-left: auto;
-    &_theme{
+    padding: vw(105, 768) 40px 60px;
+  }
+
+  @include mq(lg) {
+    width: min(vw(770, 1100), 770px);
+    width: fluid-vw(535, 770, 834, 1100);
+    margin-left: auto;
+    padding-block: clamp-reverse(1024, 1100, 90, 100) 90px;
+
+    &_inner {
+      width: 400px;
+      margin-inline: auto;
+    }
+  }
+
+  @include mq(xl) {
+    width: max(vw(770, 1440), 770px);
+    padding-block: max(vw(90, 1440), 90px);
+
+    &_inner {
+      width: max(vw(400, 1440), 400px);
+    }
+
+    &_notes {
+      margin-top: min(vw(30, 1440), 400px);
+    }
+  }
+}
+
+.company {
+  margin-top: 76px;
+
+  @include mq(md) {
+    margin-top: 78px;
+  }
+
+  @include mq(lg) {
+    margin-top: 116px;
+  }
+
+  @include mq(xl) {
+    margin-top: max(vw(116, 1440), 116px);
+  }
+}
+
+.companyList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  border-top: 1px solid #ddd;
+  font-size: rem(14);
+
+  >* {
+    padding-block: 1.1em;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &_theme {
+    flex-basis: 40%;
+    padding-right: 10px;
+    font-weight: 700;
+  }
+
+  &_detail {
+    flex-basis: 60%;
+    font-weight: 500;
+  }
+
+  @include mq(md) {
+    padding-left: percent(30, 708);
+    margin-left: auto;
+    font-size: rem(16);
+
+    &_theme {
       flex-basis: 20%;
     }
-    &_detail{
+
+    &_detail {
       flex-basis: 80%;
     }
   }
-  @include mq(lg){
-    width: percent(800,1100);
+
+  @include mq(lg) {
+    padding-left: percent(300, 1100);
   }
-  @include mq(xl){
-    font-size: max(1.1vw,1.6rem);
+
+  @include mq(xl) {
+    font-size: max(vw(16, 1440), rem(16));
+  }
+}
+
+.companyMap {
+  position: relative;
+  width: 100%;
+  height: 0;
+  margin-top: 40px;
+  padding-top: percent(470, 345);
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  @include mq(md) {
+    padding-top: percent(230, 708);
+  }
+
+  @include mq(xl) {
+    margin-top: vw(40, 1440);
   }
 }

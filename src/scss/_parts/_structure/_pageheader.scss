@@ -1,102 +1,115 @@
 @charset "utf-8";
 @use "../../setting" as *;
+
 /*--------------------------------------------------------------------
   pageHeader : ページヘッダー
 ----------------------------------------------------------------------*/
-.st-{
-  &pageHeader{
-    position: relative;
-    overflow: hidden;
-    margin-bottom: vw(78);
-    @include mq(md){
-      margin-bottom: vw(80,768);
+.st-pageHeader {
+  position: relative;
+  height: vw(445);
+
+  @include mq(md) {
+    height: vw(695, 768);
+  }
+
+  @include mq(lg) {
+    height: vw(580, 1440);
+  }
+
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    content: "";
+  }
+
+  &::before {
+    left: 0;
+    z-index: 1;
+    width: vw(287);
+    height: vw(328);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @include mq(md) {
+      width: vw(587, 768);
+      height: vw(529, 768);
     }
-    @include mq(lg){
-      margin-bottom: vw(120, 1440);
+
+    @include mq(lg) {
+      width: vw(1100, 1440);
+      height: vw(387, 1440);
     }
-    &_notes{
-      position: absolute;
-      top: vw(156);
-      right: vw(30);
-      z-index: 2;
-      max-width: vw(320);
-      font-size: vw(16,375);
-      color: #fff;
-      line-height: 1.2;
-      @include mq(md){
-        top: vw(226,768);
-        right: vw(96,768);
-      }
-      @include mq(lg){
-        top: vw(164,1440);
-        right: vw(167,1440);
-        font-size: vw(20,1440);
-      }
+  }
+
+  &::after {
+    right: 0;
+    z-index: 0;
+    width: vw(198);
+    height: vw(407);
+    background: #222;
+
+    @include mq(md) {
+      width: vw(406, 768);
+      height: vw(615, 768);
     }
-    &_lead{
-      margin-bottom: 10px;
+
+    @include mq(lg) {
+      width: vw(780, 1440);
+      height: vw(464, 1440);
     }
-    &_ttl{
-      font-size: vw(52,375);
-      line-height: 1;
-      font-family: $fontEn;
-      @include mq(md){
-        font-size: min(6.8vw,5.2rem);
-        letter-spacing: .06em;
-      }
-      @include mq(lg){
-        font-size: vw(72,1440);
-      }
+  }
+
+  &_notes {
+    position: absolute;
+    top: vw(156);
+    right: vw(30);
+    z-index: 2;
+    color: #fff;
+    line-height: 1.2;
+
+    @include mq(md) {
+      top: vw(226, 768);
+      right: vw(96, 768);
     }
-    &_txt{
-      margin-top: 10px;
-      font-size: min(4.2vw,1.6rem);
-      @include mq(lg){
-        font-size: min(1.4vw,2rem);
-      }
-      @include mq(lg){
-        font-size: max(1.3vw,2rem);
-      }
+
+    @include mq(lg) {
+      top: vw(164, 1440);
+      right: vw(167, 1440);
+      font-size: vw(20, 1440);
     }
-    &_img{
-      position: relative;
-      z-index: 1;
-      width: vw(287);
-      margin-bottom: vw(62);
-      @include mq(md){
-        width: vw(587,768);
-        margin-bottom: vw(86,768);
-      }
-      @include mq(lg){
-        width: vw(1100,1440);
-        margin-bottom: vw(77,1440);
-      }
-      &::before{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0, .34);
-        content: "";
-      }
+  }
+
+  &_ttl {
+    @include titleBase(52, $ls: 63, $lh: 52, $range: true) {
+      font-size: min(vw(52, 375), rem(52));
     }
-    &::after{
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 0;
-      width: vw(198);
-      @include mq(md){
-        width : vw(406,768);
-      }
-      @include mq(lg){
-        width : vw(780,1440);
-      }
-      height: 100%;
-      background: #222;
-      content: "";
+    text-shadow: 0 0 8px rgba(0, 0, 0, .3);
+
+    @include mq(md) {
+      font-size: vw(52, 768);
+    }
+
+    @include mq(lg) {
+      font-size: vw(72, 1440);
+    }
+  }
+
+  &_txt {
+    text-align: right;
+    font-size: min(vw(16, 375), rem(16));
+    font-weight: 700;
+    line-height: lh(16, 24);
+    text-shadow: 0 0 8px rgba(0, 0, 0, .4);
+
+    @include mq(md) {
+      text-align: left;
+      font-size: vw(16, 768);
+    }
+
+    @include mq(lg) {
+      font-size: max(vw(20, 1440), rem(20));
     }
   }
 }

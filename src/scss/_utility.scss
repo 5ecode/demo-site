@@ -1,64 +1,70 @@
 @charset 'utf-8';
 @use "setting" as *;
+
 /* --------------------------------------------------------------------
 Utility : パーツではない便利系
 ---------------------------------------------------------------------- */
-.u-{
-  &fontB{
-    font-weight: bold;
+.u- {
+  &fontB {
+    font-weight: 700;
   }
 
-  &fontEn{
+  &fontEn {
     font-family: $fontEn;
   }
 
-  &txtC{
+  &txtC {
     text-align: center;
   }
 
-  &txtR{
+  &txtR {
     text-align: right;
   }
 
-  &txtL{
+  &txtL {
     text-align: left;
   }
 
-  &mb0{
+  &mb0 {
     margin-bottom: 0;
   }
 
-  &bgColor{
+  &bgColor {
     background-color: #f0f0f0;
   }
 
-  &fullImg{
+  &fullImg {
     width: 100%;
     height: auto;
   }
 
-  &fadeOut{
+  &fadeOut {
     @include animation(fadeOut .3s both);
   }
 
-  &fadeIn{
+  &fadeIn {
     @include animation(fadeIn .3s both);
   }
 
-  &isModalBody{
+  &isModalBody {
     overflow: hidden;
   }
+
   &appear {
     opacity: 0;
-    &[data-animation="opacity"]{
-      transition: all .8s cubic-bezier(0.6, 0.2, 0.1, 1);
+
+    &[data-animation="opacity"] {
+      transition: opacity .8s cubic-bezier(0.6, 0.2, 0.1, 1);
+
       &.is-show {
         opacity: 1;
       }
     }
-    &[data-animation="goup"]{
+
+    &[data-animation="goup"] {
       transform: translateY(25px);
-      transition: all .5s cubic-bezier(0.6, 0.2, 0.1, 1);
+      transition: opacity .5s cubic-bezier(0.6, 0.2, 0.1, 1), transform .5s cubic-bezier(0.6, 0.2, 0.1, 1);
+
       &.is-show {
         opacity: 1;
         transform: translateY(0);
@@ -67,19 +73,22 @@ Utility : パーツではない便利系
   }
 }
 
-@include keyframes(fadeOut){
-  0%{
+@include keyframes(fadeOut) {
+  0% {
     opacity: 1;
   }
-  100%{
+
+  100% {
     opacity: 0;
   }
 }
-@include keyframes(fadeIn){
-  0%{
+
+@include keyframes(fadeIn) {
+  0% {
     opacity: 0;
   }
-  100%{
+
+  100% {
     opacity: 1;
   }
 }

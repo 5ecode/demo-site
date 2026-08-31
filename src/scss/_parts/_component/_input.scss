@@ -1,121 +1,170 @@
 @charset "utf-8";
 @use "../../setting" as *;
+
 /*--------------------------------------------------------------------
    Component : フォームアイテム
 ----------------------------------------------------------------------*/
-.c-{
+.c- {
+
   &input,
-  &select{
+  &select {
     width: 100%;
     border: 1px solid #333;
     background: #fff;
   }
-  &input:not(textarea){
+
+  &input:not(textarea) {
     height: 48px;
   }
-  &input{
+
+  &input {
+    display: block;
     padding: 10px;
-    &::-webkit-input-placeholder{
-      color: rgba(153,153,153,1);
+
+    &::-webkit-input-placeholder {
+      color: rgba(153, 153, 153, 1);
     }
-    &:-ms-input-placeholder{
-      color: rgba(153,153,153,1);
+
+    &:-ms-input-placeholder {
+      color: rgba(153, 153, 153, 1);
     }
-    &::-moz-placeholder{
-      color: rgba(153,153,153,1);
+
+    &::-moz-placeholder {
+      color: rgba(153, 153, 153, 1);
     }
   }
-  &inputRadio{
-    cursor: pointer;
+
+  &inputRadio {
     $this: &;
-    &_input{
-      display: none;
+
+    [type="radio"] {
+      @include inputHidden;
     }
-    &_parts{
+
+    &:has([type="radio"]:focus-visible) {
+      outline: 2px solid rgba(0, 123, 255, 0.5);
+      outline-offset: 2px;
+    }
+
+    &_parts {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
       position: relative;
-      padding-left: 30px;
-      cursor: pointer;
+
       &::before,
-      &::after{
+      &::after {
         display: inline-block;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
         border-radius: 50%;
         content: '';
       }
-      &::after{
+
+      &::before {
         width: 20px;
         height: 20px;
         border: 1px solid #333;
       }
-      &::before{
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        transform: translateY(-50%);
         opacity: 0;
         width: 12px;
         height: 12px;
-        margin: 0 15px 0 4px;
         background: #333;
       }
-      #{$this}_input:checked + &{
-        &::before{
+
+      #{$this}_input:checked+& {
+        &::after {
           opacity: 1;
+        }
+      }
+    }
+
+    @include mq(xl) {
+      &_parts {
+        &::before {
+          width: max(vw(20, 1440), 20px);
+          height: max(vw(20, 1440), 20px);
+        }
+
+        &::after {
+          left: max(vw(4, 1440), 4px);
+          width: max(vw(12, 1440), 12px);
+          height: max(vw(12, 1440), 12px);
         }
       }
     }
   }
-  &inputCheck{
+
+  &inputCheck {
     $this: &;
-    &_input{
-      display: none;
+
+    [type="checkbox"] {
+      @include inputHidden;
     }
-    &_parts{
-      display: inline-block;
+
+    &:has([type="checkbox"]:focus-visible) {
+      outline: 2px solid rgba(0, 123, 255, 0.5);
+      outline-offset: 2px;
+    }
+
+    &_parts {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
       position: relative;
-      padding-left: 1.9em;
+
       &::before,
-      &::after{
-        display: inline-block;
-        position: absolute;
-        transform: translateY(-50%);
-        content: '';
-      }
-      &::before{
-        top: 50%;
-        left: 0;
+      &::after {
+        flex-shrink: 0;
+        display: block;
         width: 16px;
         height: 16px;
+        content: '';
+      }
+
+      &::before {
         border: 1px solid #333;
-        @include mq(md){
+      }
+
+      &::after {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-check-icon%20lucide-check%22%3E%3Cpath%20d%3D%22M20%206%209%2017l-5-5%22%2F%3E%3C%2Fsvg%3E');
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      #{$this}_input:checked+& {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    @include mq(md) {
+      &_parts {
+
+        &::before,
+        &::after {
           width: 20px;
           height: 20px;
         }
-        @include mq(xl){
-          width: max(1.3vw,20px);
-          height: max(1.3vw,20px);
-        }
       }
-      &::after{
-        top: 21%;
-        left: 1.5%;
-        opacity: 0;
-        width: 7px;
-        height: 10px;
-        border-style: solid;
-        border-width: 0 2px 2px 0;
-        transform: rotate(40deg);
-        @include mq(md){
-          width: 9px;
-          height: 12px;
-        }
-        @include mq(xl){
-          width: max(.56vw,9px);
-          height: max(.85vw,12px);
-        }
-      }
-      #{$this}_input:checked + &{
-        &::after{
-          opacity: 1;
+    }
+
+    @include mq(xl) {
+      &_parts {
+
+        &::before,
+        &::after {
+          width: max(vw(20, 1440), 20px);
+          height: max(vw(20, 1440), 20px);
         }
       }
     }

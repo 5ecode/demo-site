@@ -1,20 +1,68 @@
 @charset 'utf-8';
 @use "setting" as *;
+
 /*--------------------------------------------------------------------
   @サイト全体
 ----------------------------------------------------------------------*/
 /* base
 --------------------------------------------------*/
 /* A Modern CSS Reset */
-*,*::before,*::after{box-sizing:border-box}body,h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ul[role="list"],ol[role="list"]{list-style:none}html:focus-within{scroll-behavior:smooth}body{min-height:100vh;text-rendering:optimizeSpeed;line-height:1.5}a:not([class]){text-decoration-skip-ink:auto}img,picture{max-width:100%;display:block}input,button,textarea,select{font:inherit}@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+*, *::before, *::after {
+  box-sizing: border-box
+}
+
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+  margin: 0
+}
+
+ul[role="list"], ol[role="list"] {
+  list-style: none
+}
+
+html:focus-within {
+  scroll-behavior: smooth
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto
+}
+
+img, picture {
+  max-width: 100%;
+  display: block
+}
+
+input, button, textarea, select {
+  font: inherit
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html:focus-within {
+    scroll-behavior: auto
+  }
+
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important
+  }
+}
 
 /* html
 --------------------------------------------------*/
-html{
-  font-size: 62.5%;
+html {
+  font-size: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  &.is-fixed{
+
+  &.is-fixed {
     position: fixed;
     top: 0;
     left: 0;
@@ -27,90 +75,71 @@ html{
 
 /* body
 --------------------------------------------------*/
-body{
+body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-width: 320px;
   color: #333;
-  @include defaultFont;
-  font-family: Noto Sans JP,"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
-  line-height: 1.8;
+  font-size: rem(16);
+  font-family: Noto Sans JP, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  line-height: lh(16, 24);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @include mq(xl) {
+    font-size: max(vw(16, 1440), rem(16));
+  }
 }
 
 /* 基本ブロック
 --------------------------------------------------*/
-header,main,footer{
+header, main, footer {
   overflow: hidden;
 }
 
 /* link
 --------------------------------------------------*/
-a{
+a {
   color: inherit;
   text-decoration: none;
   background-color: transparent;
-  &:active,
-  &:hover{
-    outline-width: 0;
-  }
-}
-
-/* hedding
---------------------------------------------------*/
-h1{
-  font-size: 2.8rem;
-}
-h2{
-  font-size: 2.4rem;
-}
-h3{
-  font-size: 2.2rem;
-}
-h4{
-  font-size: 2rem;
-}
-h5{
-  font-size: 1.8rem;
-}
-h6{
-  font-size: 1.6rem;
 }
 
 /* text
 --------------------------------------------------*/
-em{
+em {
   font-style: normal;
 }
-sup,sub{
+
+sup, sub {
   position: relative;
   font-size: 65%;
   line-height: 0;
   vertical-align: middle;
 }
-sup{
+
+sup {
   top: -4px;
 }
-sub{
+
+sub {
   top: 0;
 }
 
 /* button
 --------------------------------------------------*/
-button{
+button {
   padding: 0;
   background-color: transparent;
   border: none;
-  outline: none;
   appearance: none;
   cursor: pointer;
 }
 
 /* img
 --------------------------------------------------*/
-img{
+img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -119,41 +148,46 @@ img{
 
 /* table
 --------------------------------------------------*/
-table{
+table {
   width: 100%;
   border-collapse: collapse;
 }
+
 td,
-th{
+th {
   word-break: break-word;
 }
-caption{
+
+caption {
   text-align: left;
 }
 
 /* form
 --------------------------------------------------*/
-label{
+label {
   cursor: pointer;
 }
-textarea{
+
+textarea {
   resize: vertical;
 }
 
 /* list
 --------------------------------------------------*/
 ul,
-ol{
+ol {
   margin: 0;
   padding: 0;
   list-style-position: outside;
 }
-ul{
+
+ul {
   list-style: none;
 }
+
 /* hr
 --------------------------------------------------*/
-hr{
+hr {
   overflow: visible;
   height: 0;
   border-style: solid;

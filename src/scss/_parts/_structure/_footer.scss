@@ -1,24 +1,25 @@
 @charset "utf-8";
 @use "../../setting" as *;
+
 /*--------------------------------------------------------------------
   structure : フッター
 ----------------------------------------------------------------------*/
-.st-{
-  &footer{
-    background: #707070;
+.st-footer {
+  background: #707070;
+  text-align: center;
+
+  &_copy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    color: #fff;
     text-align: center;
-    &_copy{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 50px;
-      color: #fff;
-      text-align: center;
-      font-size: 1rem;
-      line-height: 1.2;
-      @include mq(xl){
-        font-size: max(.8vw,1rem);
-      }
+    font-size: 1rem;
+    line-height: 1.2;
+
+    @include mq(xl) {
+      font-size: max(vw(16, 1440), rem(16));
     }
   }
 }
