@@ -6,7 +6,8 @@
   @変数
 ---------------------------------------------------------------------- */
 /* Media Queries */
-$breakpoints: (sm: 'screen and (max-width: 428px)', md: 'screen and (min-width: 600px)', // タブレット表示
+$breakpoints: (sm: 'screen and (max-width: 428px)',
+    md: 'screen and (min-width: 600px)', // タブレット表示
     lg: 'screen and (min-width: 834px)', // PC表示
     xl: 'screen and (min-width: 1440px)' // 大きい表示
   );

@@ -11,6 +11,9 @@
     width: 100%;
     border: 1px solid #333;
     background: #fff;
+    &:focus-visible {
+      outline-color: rgba(0, 123, 255, 0.5);
+    }
   }
 
   &input:not(textarea) {
@@ -35,6 +38,7 @@
   }
 
   &inputRadio {
+    display: inline-block;
     $this: &;
 
     [type="radio"] {
@@ -100,6 +104,7 @@
   }
 
   &inputCheck {
+    display: inline-block;
     $this: &;
 
     [type="checkbox"] {

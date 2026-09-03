@@ -30,6 +30,12 @@
     @include mq(lg) {
       width: vw(260, 1440);
     }
+
+    [data-header-logo] {
+      display: block;
+      outline-color: #fff;
+      outline-offset: -2px;
+    }
   }
 
   &_board {
@@ -70,6 +76,10 @@
     font-weight: 700;
     line-height: 1.4;
     @include alpha();
+
+    &:focus-visible {
+      outline-color: #fff;
+    }
 
     &::before,
     span::after,
@@ -198,6 +208,15 @@
       &:first-of-type {
         width: max(vw(45, 1440), 45px);
       }
+    }
+  }
+
+  [data-menu="board"] {
+    display: block;
+
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
     }
   }
 }

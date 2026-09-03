@@ -20,6 +20,10 @@
   transition: all .3s ease;
   cursor: pointer;
 
+  &:focus-visible {
+    outline-color: #000;
+  }
+
   @include hover {
     background: #fff;
     color: #000;
